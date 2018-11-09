@@ -1,4 +1,4 @@
-# This module was automatically generated on 2018-10-30 11:17:34
+# This module was automatically generated on 2018-11-09 10:33:03
 # Instead of editing it, update plugins via the Jenkins web UI and rerun the generator.
 # Otherwise your changes will be overwritten the next time it is run.
 class profile::jenkins::rosplugins {
@@ -18,8 +18,8 @@ class profile::jenkins::rosplugins {
   }
 
   ::jenkins::plugin { 'ant':
-    version => '1.8',
-    require => [ Jenkins::Plugin['bouncycastle-api'], Jenkins::Plugin['command-launcher'], Jenkins::Plugin['jdk-tool'], Jenkins::Plugin['structs'] ]
+    version => '1.9',
+    require => [ Jenkins::Plugin['structs'] ]
   }
 
   ::jenkins::plugin { 'antisamy-markup-formatter':
@@ -82,6 +82,11 @@ class profile::jenkins::rosplugins {
     require => [ Jenkins::Plugin['bouncycastle-api'], Jenkins::Plugin['command-launcher'], Jenkins::Plugin['jdk-tool'], Jenkins::Plugin['matrix-project'], Jenkins::Plugin['maven-plugin'], Jenkins::Plugin['run-condition'], Jenkins::Plugin['token-macro'] ]
   }
 
+  ::jenkins::plugin { 'config-file-provider':
+    version => '3.4.1',
+    require => [ Jenkins::Plugin['cloudbees-folder'], Jenkins::Plugin['command-launcher'], Jenkins::Plugin['credentials'], Jenkins::Plugin['jdk-tool'], Jenkins::Plugin['ssh-credentials'], Jenkins::Plugin['structs'], Jenkins::Plugin['token-macro'] ]
+  }
+
   ::jenkins::plugin { 'copyartifact':
     version => '1.41',
     require => [ Jenkins::Plugin['apache-httpcomponents-client-4-api'], Jenkins::Plugin['matrix-project'], Jenkins::Plugin['maven-plugin'], Jenkins::Plugin['scm-api'], Jenkins::Plugin['structs'] ]
@@ -113,13 +118,13 @@ class profile::jenkins::rosplugins {
   }
 
   ::jenkins::plugin { 'durable-task':
-    version => '1.26',
+    version => '1.27',
     require => [ Jenkins::Plugin['bouncycastle-api'], Jenkins::Plugin['command-launcher'], Jenkins::Plugin['jdk-tool'] ]
   }
 
   ::jenkins::plugin { 'email-ext':
     version => '2.63',
-    require => [ Jenkins::Plugin['analysis-core'], Jenkins::Plugin['bouncycastle-api'], Jenkins::Plugin['command-launcher'], Jenkins::Plugin['jdk-tool'], Jenkins::Plugin['junit'], Jenkins::Plugin['mailer'], Jenkins::Plugin['matrix-project'], Jenkins::Plugin['script-security'], Jenkins::Plugin['structs'], Jenkins::Plugin['token-macro'], Jenkins::Plugin['workflow-job'], Jenkins::Plugin['workflow-step-api'] ]
+    require => [ Jenkins::Plugin['analysis-core'], Jenkins::Plugin['bouncycastle-api'], Jenkins::Plugin['command-launcher'], Jenkins::Plugin['config-file-provider'], Jenkins::Plugin['jdk-tool'], Jenkins::Plugin['junit'], Jenkins::Plugin['mailer'], Jenkins::Plugin['matrix-project'], Jenkins::Plugin['script-security'], Jenkins::Plugin['structs'], Jenkins::Plugin['token-macro'], Jenkins::Plugin['workflow-job'], Jenkins::Plugin['workflow-step-api'] ]
   }
 
   ::jenkins::plugin { 'embeddable-build-status':
@@ -150,6 +155,11 @@ class profile::jenkins::rosplugins {
   ::jenkins::plugin { 'git-client':
     version => '2.7.3',
     require => [ Jenkins::Plugin['apache-httpcomponents-client-4-api'], Jenkins::Plugin['bouncycastle-api'], Jenkins::Plugin['command-launcher'], Jenkins::Plugin['credentials'], Jenkins::Plugin['jdk-tool'], Jenkins::Plugin['jsch'], Jenkins::Plugin['ssh-credentials'], Jenkins::Plugin['structs'] ]
+  }
+
+  ::jenkins::plugin { 'git-server':
+    version => '1.7',
+    require => [ Jenkins::Plugin['bouncycastle-api'], Jenkins::Plugin['command-launcher'], Jenkins::Plugin['git-client'], Jenkins::Plugin['jdk-tool'] ]
   }
 
   ::jenkins::plugin { 'github':
@@ -193,7 +203,7 @@ class profile::jenkins::rosplugins {
   }
 
   ::jenkins::plugin { 'jackson2-api':
-    version => '2.8.11.3',
+    version => '2.9.7.1',
     require => [ Jenkins::Plugin['command-launcher'], Jenkins::Plugin['jdk-tool'] ]
   }
 
@@ -392,9 +402,14 @@ class profile::jenkins::rosplugins {
     require => [ Jenkins::Plugin['ace-editor'], Jenkins::Plugin['jquery-detached'], Jenkins::Plugin['scm-api'], Jenkins::Plugin['script-security'], Jenkins::Plugin['structs'], Jenkins::Plugin['workflow-api'], Jenkins::Plugin['workflow-scm-step'], Jenkins::Plugin['workflow-step-api'], Jenkins::Plugin['workflow-support'] ]
   }
 
+  ::jenkins::plugin { 'workflow-cps-global-lib':
+    version => '2.12',
+    require => [ Jenkins::Plugin['cloudbees-folder'], Jenkins::Plugin['command-launcher'], Jenkins::Plugin['credentials'], Jenkins::Plugin['git-client'], Jenkins::Plugin['git-server'], Jenkins::Plugin['jdk-tool'], Jenkins::Plugin['scm-api'], Jenkins::Plugin['script-security'], Jenkins::Plugin['structs'], Jenkins::Plugin['workflow-cps'], Jenkins::Plugin['workflow-scm-step'] ]
+  }
+
   ::jenkins::plugin { 'workflow-job':
-    version => '2.25',
-    require => [ Jenkins::Plugin['command-launcher'], Jenkins::Plugin['jdk-tool'], Jenkins::Plugin['workflow-api'], Jenkins::Plugin['workflow-step-api'], Jenkins::Plugin['workflow-support'] ]
+    version => '2.28',
+    require => [ Jenkins::Plugin['workflow-api'], Jenkins::Plugin['workflow-step-api'], Jenkins::Plugin['workflow-support'] ]
   }
 
   ::jenkins::plugin { 'workflow-multibranch':
@@ -413,7 +428,7 @@ class profile::jenkins::rosplugins {
   }
 
   ::jenkins::plugin { 'workflow-support':
-    version => '2.21',
+    version => '2.22',
     require => [ Jenkins::Plugin['scm-api'], Jenkins::Plugin['script-security'], Jenkins::Plugin['workflow-api'], Jenkins::Plugin['workflow-step-api'] ]
   }
 
